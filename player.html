@@ -104,8 +104,8 @@
     });
   </script>
   <!--data tracks-->
-  <script type="text/javascript" src="js/awp1.js"></script>
-  <script type="text/javascript" src="js/awp2.js"></script>
+  <script type="text/javascript" src="js/awp1local.js"></script>
+  <script type="text/javascript" src="js/awp2local.js"></script>
   <!--Sounds-->
   <script type="text/javascript" src="js/sounds.js"></script>
 
@@ -1667,18 +1667,20 @@
 
     // Select the track from the lists
     function selectTrack(trk) {
-      awp_player.destroyPlaylist();
       awp_player2.destroyPlaylist();
-      awp_player.addTrack("data", awp_track_list_data1[trk], false, 0);
+      awp_player.destroyPlaylist();
       awp_player2.addTrack("data", awp_track_list_data2[trk], false, 0);
-      awp_player.play();
+      awp_player.addTrack("data", awp_track_list_data1[trk], false, 0);
+      awp_player2.stop();
+      awp_player.playMedia();
       awp_player2.stop();
     }
+
 
     // Select random track
     function selectRandomTrack() {
       min = Math.ceil(0);
-      max = Math.floor(118);
+      max = Math.floor(117);
       trk = Math.floor(Math.random() * (max - min + 1)) + min;
 
       awp_player.destroyPlaylist();
